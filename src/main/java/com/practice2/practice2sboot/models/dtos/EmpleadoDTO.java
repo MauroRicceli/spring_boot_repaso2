@@ -6,6 +6,13 @@ public class EmpleadoDTO {
     private String nombre, email;
     private int edad;
 
+    public EmpleadoDTO(Long id, String nombre, String email, int edad){
+        this.id = id;
+        this.edad = edad;
+        this.nombre = nombre;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }

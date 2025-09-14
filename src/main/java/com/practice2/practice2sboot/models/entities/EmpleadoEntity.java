@@ -10,7 +10,10 @@ public class EmpleadoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre, email;
+    private String nombre;
+
+    @Column(nullable = false, unique = true)
+    private String email;
     private int edad;
 
     public EmpleadoEntity(){}

@@ -1,7 +1,8 @@
 package com.practice2.practice2sboot.services;
 
 import com.practice2.practice2sboot.exceptions.newexceptions.EmpleadoAlreadyRegistered;
-import com.practice2.practice2sboot.models.domains.EmpleadoDomain;
+import com.practice2.practice2sboot.models.domains.EmpleadoCreateDomain;
+import com.practice2.practice2sboot.models.dtos.EmpleadoCreateDTO;
 import com.practice2.practice2sboot.models.dtos.EmpleadoDTO;
 import com.practice2.practice2sboot.models.entities.EmpleadoEntity;
 import com.practice2.practice2sboot.repositories.RepoEmpleados;
@@ -17,15 +18,19 @@ public class EmpleadoService {
     @Autowired
     private RepoEmpleados repositorioEmpleados;
 
-    public EmpleadoDTO registrarEmpleado(EmpleadoDTO emp){
-        EmpleadoDomain prueba = new EmpleadoDomain(emp.getId(), emp.getNombre(), emp.getEmail(), emp.getEdad());
-        EmpleadoEntity empleado = new EmpleadoEntity(emp.getId(), emp.getNombre(), emp.getEmail(), emp.getEdad());
-        if(repositorioEmpleados.existsById(empleado.getId())){
-            throw new EmpleadoAlreadyRegistered("El empleado con esa ID "+emp.getId()+" ya está registrado en el sistema");
-        }
+    public EmpleadoCreateDTO registrarEmpleado(EmpleadoCreateDTO emp){
+        //Verificar que los datos son válidos.
+        EmpleadoCreateDomain prueba = new EmpleadoCreateDomain(emp.getNombre(), emp.getEmail(), emp.getEdad());
 
+        //Preparar la insert
+        EmpleadoEntity empleado = new EmpleadoEntity();
+        empleado.setEdad(emp.getEdad());
+        empleado.setNombre(emp.getNombre());
+        empleado.setEmail(emp.getEmail());
 
+        //Insert
         repositorioEmpleados.save(empleado);
+
         return emp;
     }
 
@@ -33,7 +38,7 @@ public class EmpleadoService {
         List<EmpleadoEntity> empleados = repositorioEmpleados.findAll();
         List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
         for(EmpleadoEntity emp : empleados){
-            empleadosDTO.add(new EmpleadoDTO());
+            empleadosDTO.add(new EmpleadoDTO(emp.getId(), emp.getNombre(), emp.getEmail(), emp.getEdad()));
         }
         return empleadosDTO;
     }
