@@ -79,9 +79,7 @@ public class DepartamentoService {
             return null;
         }
 
-        EmpleadoEntity empleado = empleadoMapper.convertirEmpleadoDTOaEntity(emp);
-
-        System.out.println(empleado);
+        EmpleadoEntity empleado = empleadoService.obtenerEmpleadoPorID(emp.getId());
 
         if(!dpto.getEmpleados().remove(empleado)){
             throw new EmpleadoIsNotPartOfDepartment("El empleado no es parte del departamento indicado");

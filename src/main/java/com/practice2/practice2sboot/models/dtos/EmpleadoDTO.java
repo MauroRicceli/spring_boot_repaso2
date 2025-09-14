@@ -7,11 +7,11 @@ public class EmpleadoDTO {
     private Long id;
     private String nombre, email;
     private int edad;
-    private departamentoID dpto;
+    private DepartamentoDTO dpto;
 
     public EmpleadoDTO(){}
 
-    public EmpleadoDTO(Long id, String nombre, String email, int edad, departamentoID dpto){
+    public EmpleadoDTO(Long id, String nombre, String email, int edad, DepartamentoDTO dpto){
         this.id = id;
         this.edad = edad;
         this.nombre = nombre;
@@ -19,11 +19,11 @@ public class EmpleadoDTO {
         this.dpto = dpto;
     }
 
-    public departamentoID getDpto() {
+    public DepartamentoDTO getDpto() {
         return dpto;
     }
 
-    public void setDpto(departamentoID dpto) {
+    public void setDpto(DepartamentoDTO dpto) {
         this.dpto = dpto;
     }
 
