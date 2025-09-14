@@ -1,6 +1,7 @@
 package com.practice2.practice2sboot.exceptions;
 
 import com.practice2.practice2sboot.exceptions.newexceptions.EmpleadoAlreadyRegistered;
+import com.practice2.practice2sboot.exceptions.newexceptions.EmpleadoDoesntExists;
 import org.apache.coyote.Response;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,11 @@ public class Handler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> catchDataIntegrityViolationException(DataIntegrityViolationException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EmpleadoDoesntExists.class)
+    public ResponseEntity<String> catchEmpleadoDoesntExists(EmpleadoDoesntExists e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
