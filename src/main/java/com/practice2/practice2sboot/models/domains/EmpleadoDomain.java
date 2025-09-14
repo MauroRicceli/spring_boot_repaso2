@@ -7,7 +7,7 @@ public class EmpleadoDomain {
     private int edad;
     private String nombre, email;
 
-    public EmpleadoDomain(Long id, int edad, String nombre, String email){
+    public EmpleadoDomain(Long id, String nombre, String email, int edad){
         if(id <= 0){
             throw new IllegalArgumentException("El id del empleado debe ser mayor a 0");
         }
