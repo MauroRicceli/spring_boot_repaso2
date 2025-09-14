@@ -1,7 +1,11 @@
 package com.practice2.practice2sboot.models.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,10 +15,14 @@ public class DepartamentoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre, ubicacion;
+    @Column(nullable = false, unique = true)
+    private String nombre;
 
-    @OneToMany(mappedBy = "departamento", fetch = FetchType.LAZY)
-    List<EmpleadoEntity> empleados;
+    private String ubicacion;
+
+    @OneToMany(mappedBy = "departamento", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
+    List<EmpleadoEntity> empleados = new ArrayList<>();
 
     public DepartamentoEntity(){}
 

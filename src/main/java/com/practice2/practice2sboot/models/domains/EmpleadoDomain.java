@@ -69,4 +69,12 @@ public class EmpleadoDomain {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public DepartamentoDomain getDpto() {
+        return dpto;
+    }
+
+    public void setDpto(DepartamentoDomain dpto) {
+        this.dpto = dpto;
+    }
 }

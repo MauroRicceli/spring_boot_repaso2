@@ -1,6 +1,10 @@
 package com.practice2.practice2sboot.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
 @Table(name="empleados")
@@ -18,16 +22,17 @@ public class EmpleadoEntity {
 
     @ManyToOne
     @JoinColumn(name = "departamento_id", nullable = true)
-    private DepartamentoEntity departamento;
+    @JsonManagedReference
+    private Long departamento_id;
 
     public EmpleadoEntity(){}
 
-    public EmpleadoEntity(Long id, String nombre, String email, int edad, DepartamentoEntity departamento){
+    public EmpleadoEntity(Long id, String nombre, String email, int edad, Long departamento){
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.edad = edad;
-        this.departamento = departamento;
+        this.departamento_id = departamento;
     }
 
     @Override
@@ -37,8 +42,23 @@ public class EmpleadoEntity {
                 ", nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
                 ", edad=" + edad + '\'' +
-                ", departamento="+departamento+
+                ", departamento="+departamento_id+
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if(object instanceof EmpleadoEntity){
+            EmpleadoEntity aux = (EmpleadoEntity) object;
+            return Objects.equals(aux.getId(), this.id) && Objects.equals(aux.getDepartamento(), this.departamento_id) && Objects.equals(aux.getEdad(), this.edad)
+                    && Objects.equals(aux.getEmail(), this.email) && Objects.equals(aux.getNombre(), this.nombre);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, edad, nombre, email);
     }
 
     public long getId() {
@@ -69,15 +89,19 @@ public class EmpleadoEntity {
         return edad;
     }
 
-    public DepartamentoEntity getDepartamento() {
-        return departamento;
+    public Long getDepartamento() {
+        return departamento_id;
     }
 
-    public void setDepartamento(DepartamentoEntity departamento) {
-        this.departamento = departamento;
+    public void setDepartamento(Long departamento) {
+        this.departamento_id = departamento;
     }
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

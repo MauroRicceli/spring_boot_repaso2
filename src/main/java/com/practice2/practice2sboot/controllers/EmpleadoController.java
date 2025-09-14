@@ -15,8 +15,12 @@ import java.util.List;
 @RequestMapping("/api/empleado")
 public class EmpleadoController {
 
+    private final EmpleadoService empleadoService;
+
     @Autowired
-    private EmpleadoService empleadoService;
+    public EmpleadoController(EmpleadoService empleadoService){
+        this.empleadoService = empleadoService;
+    }
 
     @PutMapping(value="/register", produces = "application/json", consumes = "application/json")
     public ResponseEntity<EmpleadoCreateDTO> registerEmpleado(@RequestBody EmpleadoCreateDTO emp){

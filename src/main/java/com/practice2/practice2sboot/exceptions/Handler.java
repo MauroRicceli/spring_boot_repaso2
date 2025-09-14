@@ -1,7 +1,9 @@
 package com.practice2.practice2sboot.exceptions;
 
+import com.practice2.practice2sboot.exceptions.newexceptions.DepartamentoDoesntExists;
 import com.practice2.practice2sboot.exceptions.newexceptions.EmpleadoAlreadyRegistered;
 import com.practice2.practice2sboot.exceptions.newexceptions.EmpleadoDoesntExists;
+import com.practice2.practice2sboot.exceptions.newexceptions.EmpleadoIsNotPartOfDepartment;
 import org.apache.coyote.Response;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,16 @@ public class Handler {
 
     @ExceptionHandler(EmpleadoDoesntExists.class)
     public ResponseEntity<String> catchEmpleadoDoesntExists(EmpleadoDoesntExists e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DepartamentoDoesntExists.class)
+    public ResponseEntity<String> catchDepartamentoDoesntExists(DepartamentoDoesntExists e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EmpleadoIsNotPartOfDepartment.class)
+    public ResponseEntity<String> catchEmpleadoIsNotPartOfDepartment(EmpleadoIsNotPartOfDepartment e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

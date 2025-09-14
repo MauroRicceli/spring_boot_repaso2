@@ -79,4 +79,19 @@ public class EmpleadoService {
         repositorioEmpleados.save(empleado);
         return emp;
     }
+
+    public EmpleadoEntity obtenerEmpleadoPorID(Long empleadoID){
+        EmpleadoEntity emp = repositorioEmpleados.findById(empleadoID).orElseThrow(() -> new EmpleadoDoesntExists("El empleado no existe en el sistema"));
+        return emp;
+    }
+
+    public void guardarEmpleadoEntity(EmpleadoEntity emp){
+        repositorioEmpleados.save(emp);
+    }
+
+    public boolean verificarExistenciaEmpleado(EmpleadoDTO emp){
+        EmpleadoEntity aux = repositorioEmpleados.findById(emp.getId()).orElseThrow(() -> new EmpleadoDoesntExists("El empleado de id "+emp.getId()+" no existe en el sistema"));
+
+        return true;
+    }
 }

@@ -14,12 +14,7 @@ public class DepartamentoDomain {
         if(id == null || id <= 0){
             throw new IllegalArgumentException("El id es vacio o inválido");
         }
-        if(nombre == null || nombre.length() <= 2){
-            throw new IllegalArgumentException("El nombre no puede tener menos de 3 caracteres");
-        }
-        if(ubicacion == null || ubicacion.length() <= 10){
-            throw new IllegalArgumentException("La ubicacion no puede tener menos de 10 caracteres");
-        }
+
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
@@ -62,5 +57,13 @@ public class DepartamentoDomain {
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public List<EmpleadoDomain> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<EmpleadoDomain> empleados) {
+        this.empleados = empleados;
     }
 }

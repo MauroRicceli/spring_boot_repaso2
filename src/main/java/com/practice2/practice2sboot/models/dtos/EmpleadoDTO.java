@@ -7,15 +7,23 @@ public class EmpleadoDTO {
     private Long id;
     private String nombre, email;
     private int edad;
-    private DepartamentoDTO dpto;
+    private departamentoID dpto;
 
     public EmpleadoDTO(){}
 
-    public EmpleadoDTO(Long id, String nombre, String email, int edad, DepartamentoDTO dpto){
+    public EmpleadoDTO(Long id, String nombre, String email, int edad, departamentoID dpto){
         this.id = id;
         this.edad = edad;
         this.nombre = nombre;
         this.email = email;
+        this.dpto = dpto;
+    }
+
+    public departamentoID getDpto() {
+        return dpto;
+    }
+
+    public void setDpto(departamentoID dpto) {
         this.dpto = dpto;
     }
 

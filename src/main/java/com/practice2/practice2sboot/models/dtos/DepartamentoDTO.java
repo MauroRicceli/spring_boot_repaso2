@@ -16,6 +16,14 @@ public class DepartamentoDTO {
         this.empleados = empleados;
     }
 
+    public List<EmpleadoDTO> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<EmpleadoDTO> empleados) {
+        this.empleados = empleados;
+    }
+
     public long getId() {
         return id;
     }
