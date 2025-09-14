@@ -1,12 +1,16 @@
 package com.practice2.practice2sboot.models.domains;
 
+import java.util.List;
 import java.util.Objects;
 
 public class DepartamentoDomain {
     private Long id;
     private String nombre, ubicacion;
+    private List<EmpleadoDomain> empleados;
 
-    public DepartamentoDomain(Long id, String nombre, String ubicacion){
+    public DepartamentoDomain(){}
+
+    public DepartamentoDomain(Long id, String nombre, String ubicacion, List<EmpleadoDomain> empleados){
         if(id == null || id <= 0){
             throw new IllegalArgumentException("El id es vacio o inválido");
         }
@@ -19,6 +23,7 @@ public class DepartamentoDomain {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
+        this.empleados = empleados;
     }
 
     @Override

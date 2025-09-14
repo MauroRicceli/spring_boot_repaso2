@@ -2,6 +2,8 @@ package com.practice2.practice2sboot.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="departamentos")
 public class DepartamentoEntity {
@@ -11,7 +13,18 @@ public class DepartamentoEntity {
 
     private String nombre, ubicacion;
 
+    @OneToMany(mappedBy = "departamento", fetch = FetchType.LAZY)
+    List<EmpleadoEntity> empleados;
+
     public DepartamentoEntity(){}
+
+    public List<EmpleadoEntity> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<EmpleadoEntity> empleados) {
+        this.empleados = empleados;
+    }
 
     public DepartamentoEntity(Long id, String nombre, String ubicacion){
         this.id = id;

@@ -1,13 +1,18 @@
 package com.practice2.practice2sboot.models.domains;
 
+import com.practice2.practice2sboot.models.dtos.EmpleadoDTO;
+
 import java.util.Objects;
 
 public class EmpleadoDomain {
     private Long id;
     private int edad;
     private String nombre, email;
+    private DepartamentoDomain dpto;
 
-    public EmpleadoDomain(Long id, String nombre, String email, int edad){
+    public EmpleadoDomain(){}
+
+    public EmpleadoDomain(Long id, String nombre, String email, int edad, DepartamentoDomain dpto){
         if(id <= 0){
             throw new IllegalArgumentException("El id del empleado debe ser mayor a 0");
         }
@@ -15,6 +20,7 @@ public class EmpleadoDomain {
         this.edad = edad;
         this.nombre = nombre;
         this.email = email;
+        this.dpto = dpto;
     }
 
     @Override

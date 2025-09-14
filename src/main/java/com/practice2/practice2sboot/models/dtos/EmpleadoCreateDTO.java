@@ -4,6 +4,8 @@ public class EmpleadoCreateDTO {
     private int edad;
     private String nombre, email;
 
+    public EmpleadoCreateDTO(){}
+
     public int getEdad() {
         return edad;
     }

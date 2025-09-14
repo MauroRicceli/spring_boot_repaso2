@@ -16,13 +16,18 @@ public class EmpleadoEntity {
     private String email;
     private int edad;
 
+    @ManyToOne
+    @JoinColumn(name = "departamento_id", nullable = true)
+    private DepartamentoEntity departamento;
+
     public EmpleadoEntity(){}
 
-    public EmpleadoEntity(Long id, String nombre, String email, int edad){
+    public EmpleadoEntity(Long id, String nombre, String email, int edad, DepartamentoEntity departamento){
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.edad = edad;
+        this.departamento = departamento;
     }
 
     @Override
@@ -31,7 +36,8 @@ public class EmpleadoEntity {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
-                ", edad=" + edad +
+                ", edad=" + edad + '\'' +
+                ", departamento="+departamento+
                 '}';
     }
 
@@ -61,6 +67,14 @@ public class EmpleadoEntity {
 
     public int getEdad() {
         return edad;
+    }
+
+    public DepartamentoEntity getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(DepartamentoEntity departamento) {
+        this.departamento = departamento;
     }
 
     public void setEdad(int edad) {

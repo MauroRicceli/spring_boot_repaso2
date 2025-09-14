@@ -1,8 +1,20 @@
 package com.practice2.practice2sboot.models.dtos;
 
+import java.util.List;
+
 public class DepartamentoDTO {
     private long id;
     private String nombre, ubicacion;
+    private List<EmpleadoDTO> empleados;
+
+    public DepartamentoDTO(){}
+
+    public DepartamentoDTO(Long id, String nombre, String ubicacion, List<EmpleadoDTO> empleados){
+        this.id = id;
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.empleados = empleados;
+    }
 
     public long getId() {
         return id;

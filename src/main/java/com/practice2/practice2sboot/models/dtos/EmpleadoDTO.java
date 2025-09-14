@@ -1,16 +1,22 @@
 package com.practice2.practice2sboot.models.dtos;
 
 
+import com.practice2.practice2sboot.models.entities.DepartamentoEntity;
+
 public class EmpleadoDTO {
     private Long id;
     private String nombre, email;
     private int edad;
+    private DepartamentoDTO dpto;
 
-    public EmpleadoDTO(Long id, String nombre, String email, int edad){
+    public EmpleadoDTO(){}
+
+    public EmpleadoDTO(Long id, String nombre, String email, int edad, DepartamentoDTO dpto){
         this.id = id;
         this.edad = edad;
         this.nombre = nombre;
         this.email = email;
+        this.dpto = dpto;
     }
 
     public Long getId() {

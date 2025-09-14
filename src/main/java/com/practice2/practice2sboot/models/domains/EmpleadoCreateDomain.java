@@ -4,6 +4,8 @@ public class EmpleadoCreateDomain {
     private int edad;
     private String nombre, email;
 
+    public EmpleadoCreateDomain(){}
+
     public EmpleadoCreateDomain(String nombre, String email, int edad){
         if(edad < 18 || edad > 90){
             throw new IllegalArgumentException("La edad ingresada es inválida");
